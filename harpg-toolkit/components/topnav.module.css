@@ -1,0 +1,42 @@
+.navcontainer {
+  background-color: #edf0f1;
+  height: 50px;
+}
+
+.main_logo {
+  float: left;
+  height: auto;
+  width: auto;
+  max-width: 50px;
+  max-height: 50px;
+}
+
+.home_link {
+  display: inline-block;
+  padding: 10px;
+  vertical-align: middle;
+  font-size: 25px;
+}
+
+.home_link:hover {
+  text-shadow: black 0px 1px 5px;
+}
+
+.topnav {
+  float: right;
+}
+
+.topnav li {
+  list-style: none;
+  height: 50px;
+  padding: 10px;
+  display: inline-block;
+}
+
+.topnav li:hover {
+  background-color: #c9dafa;
+}
+
+.topnav a {
+  vertical-align: middle;
+}
