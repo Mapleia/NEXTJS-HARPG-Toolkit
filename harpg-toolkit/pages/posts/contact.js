@@ -1,14 +1,13 @@
 import Head from 'next/head'
-import Layout from '../../components/layout'
+import Basic from '../../components/layouts/basic'
 
 export default function contact() {
     return (
-        <Layout>
+        <Basic>
             <Head>
-                <title>Toolkit</title>
+                <title>Contact</title>
             </Head>
-
-            <h1>What is HARPG?</h1>
-        </Layout>
+            <h1>Contact</h1>
+        </Basic>
     )
   }

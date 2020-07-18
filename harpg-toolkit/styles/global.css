@@ -4,7 +4,6 @@
 html {
   font-family: "Noto Sans", sans-serif;
   background-color: ghostwhite;
-  height: 100%;
 }
 
 * {
@@ -19,4 +18,9 @@ li, a, button {
   font-size: 16px;
   color: #181818;
   text-decoration: none;
+}
+
+body {
+  height: 100%;
+  width: 100%;
 }
