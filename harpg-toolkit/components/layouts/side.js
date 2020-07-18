@@ -1,12 +1,11 @@
 import Head from "next/Head";
 import Topnav from "../topnav";
-import Sidenavbar from "../introSidebar";
-import Tab from "../tab";
 import styles from "./side.module.css";
+import Link from 'next/link'
 
 export default function Side({ children }) {
   return (
-    <div>
+    <div className={styles.mainContainer}>
       <Head>
         <link
           rel="apple-touch-icon"
@@ -34,8 +33,16 @@ export default function Side({ children }) {
       <Topnav></Topnav>
 
       <div className={styles.container}>
-        <Sidenavbar></Sidenavbar>
-        <Tab>{ children }</Tab>
+
+        <div className={styles.tabcontainer}>
+          <ul className={styles.navtab}>
+            <li><Link href="/intro"><a>What is HARPG?</a></Link></li>
+            <li><Link href="/intro/tab2"><a>TAB2</a></Link></li>
+          </ul>
+        </div>
+
+        <div className={styles.tab}>{children}</div>
+
         <footer className={styles.footer}>Made by Mapleia on Github.</footer>
       </div>
       
