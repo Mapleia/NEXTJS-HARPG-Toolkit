@@ -1,19 +1,14 @@
-.sidebar {
+.sideBar {
     grid-area: side;
     background-color: #cfe2e9;
 }
 
-.sidebar li {
+.sideBar li {
     list-style: none;
     width: 100%;
     padding: 5px 5px 5px;
 }
   
-.sidebar li:hover {
+.sideBar li:hover {
     background-color: #b5c9d4;
-}
-
-.activetab {
-    grid-area: tb;
-    padding: 10px 10px 10px 30px;
 }

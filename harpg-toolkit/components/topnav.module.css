@@ -1,42 +1,42 @@
-.navcontainer {
+.navContainer {
   background-color: #edf0f1;
   height: 50px;
 }
 
-.main_logo {
+.mainLogo {
   float: left;
   height: auto;
   width: auto;
-  max-width: 50px;
-  max-height: 50px;
+  width: 50px;
+  height: 50px;
 }
 
-.home_link {
+.homeLink {
   display: inline-block;
   padding: 10px;
   vertical-align: middle;
   font-size: 25px;
 }
 
-.home_link:hover {
+.homeLink:hover {
   text-shadow: black 0px 1px 5px;
 }
 
-.topnav {
+.topNav {
   float: right;
 }
 
-.topnav li {
+.topNav li {
   list-style: none;
   height: 50px;
   padding: 10px;
   display: inline-block;
 }
 
-.topnav li:hover {
+.topNav li:hover {
   background-color: #c9dafa;
 }
 
-.topnav a {
+.topNav a {
   vertical-align: middle;
 }
