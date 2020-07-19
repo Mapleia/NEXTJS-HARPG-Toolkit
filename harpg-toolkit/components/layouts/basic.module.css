@@ -3,10 +3,17 @@
     text-align: center;
     font-size: 12px;
     vertical-align: middle;
-    margin-top: 50px;
+    align-self: baseline;
+    padding: 10px 0px 10px;
+    width: 100%;
 }
 
 .body {
     display: flex;
     flex-direction: column;
+    height: 100vh;
+}
+
+.container {
+    height: 100%;
 }

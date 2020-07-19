@@ -31,7 +31,7 @@ export default function Basic({ children }) {
 
       <Topnav></Topnav>
 
-      <div> { children } </div>
+      <div className={styles.container}> { children } </div>
 
       <footer className={styles.footer}>Made by Mapleia on Github. </footer>
     </div>

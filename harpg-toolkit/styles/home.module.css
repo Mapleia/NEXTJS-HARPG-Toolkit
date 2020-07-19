@@ -1,20 +1,18 @@
-.body {
+.welcome {
     display: flex;
     flex-direction: column;
-}
-
-.card {
     text-align: center;
-    grid-area: spn;
+
 }
 
-.landingWelcome {
+.title {
     padding: 30px 0px 30px 0px;
 }
   
-.welcomeCard {
+.card {
     display: inline-block;
     padding: 20px 20px 20px;
     max-width: max-content;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 0px 20px 0px 20px;
 }

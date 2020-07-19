@@ -1,41 +1,44 @@
-.mainContainer {
-  height: 100vh;
-}
-
 .container {
-  max-height: calc(100vh - 50px);
   display: grid;
-    grid-template-areas:
-      "sd tb"
-      "ft ft";
-    grid-template-rows: 90vh 4vh;
-    grid-template-columns: 130px 1fr;
+  height: 100vh;
+  grid-template-areas:
+    "hd   hd"
+    "side tb"
+    "ft   ft";
+  grid-template-rows: min-content 1fr 30px;
+  grid-template-columns: 130px 1fr;
 }
 
-.tab {
-    grid-area: tb;
-    padding: 10px 10px 10px 30px;
-    overflow-y: scroll;
-}
-
-.footer {
-  grid-area: ft;
-  background-color: #edf0f1;
-  text-align: center;
-  font-size: 12px;
-  vertical-align: middle;
+/* Side bar of the page */
+.tabcontainer {
+  grid-area: side;
+  background-color: #cfe2e9;
 }
 
 .navtab li {
   list-style: none;
+  width: 100%;
   padding: 5px 5px 5px;
+  border-bottom: 1px solid #b5c9d4;
 }
 
 .navtab li:hover {
   background-color: #b5c9d4;
 }
 
-.tabcontainer {
-  grid-area: sd;
-  background-color: #cfe2e9;
+/* Tabbed pages from the sidebar. */
+.tab {
+  grid-area: tb;
+  padding: 10px 10px 10px 30px;
+  overflow: scroll;
+}
+
+/* Final footer at the end of the page. */
+.footer {
+  grid-area: ft;
+  background-color: #edf0f1;
+  text-align: center;
+  font-size: 12px;
+  vertical-align: middle;
+  padding: 10px 0px 10px;
 }
