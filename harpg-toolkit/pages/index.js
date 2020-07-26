@@ -9,13 +9,13 @@ export default function Home() {
         <title>HARPG Toolkit</title>
       </Head>
 
-      <section className={styles.welcome}>
+      <div className={styles.welcome}>
         <h1 className={styles.title}>Welcome!</h1>
         <h3 className={styles.card}>
           This is a free to use HARPG Toolkit, a website with a collection of
           free to use tools for the community on DeviantArt.
         </h3>
-      </section>
+      </div>
     </Basic>
   );
 }

@@ -44,6 +44,11 @@ export default function Side({ children }) {
               <a>Genetics</a>
             </Link>
           </li>
+          <li>
+            <Link href="/posts/intro/phenoapp">
+              <a>Horse Colours App</a>
+            </Link>
+          </li>
         </ul>
       </div>
 
