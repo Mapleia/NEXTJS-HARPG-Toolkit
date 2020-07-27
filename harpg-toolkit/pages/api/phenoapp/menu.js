@@ -2,11 +2,15 @@ const menus = [
     {
         id: 'start',
         title: 'Toolkit: Horse Phenotypes',
-        button: 'START'
+        button: 'START',
+        menuitem: null,
+        next: 'base'
     },
     {
         id: 'base',
-        title: 'Choose Your Base Colour'
+        title: 'Choose Your Base Colour',
+        button: 'NEXT',
+        menuitem: []
     }
 ]
 

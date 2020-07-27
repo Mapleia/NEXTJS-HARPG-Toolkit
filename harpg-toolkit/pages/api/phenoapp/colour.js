@@ -1,59 +1,86 @@
 const colours = [
     {
         id: 'chestnut',
-        img: '/colours/CHESTNUT.png'
+        img: '/colours/CHESTNUT.png',
+        hair: '/hair/CHESTNUTHAIR.png',
+        hoof: '/extra/REG_HOOVES.png',
+        skin: '/extra/REG_SKIN.png',
+        eye: '/extra/REG_EYE.png',
     },
     {
         id: 'black',
-        img: '/colours/BLACK.png'
+        img: '/colours/BLACK.png',
+        hair: '/hair/BLACKHAIR.png',
+        hoof: '/extra/REG_HOOVES.png',
+        skin: '/extra/REG_SKIN.png',
+        eye: '/extra/REG_EYE.png',
+        
     },
     {
         id: 'bay',
-        img: '/colours/BAY.png'
+        img: '/colours/BAY.png',
+        hair: '/hair/BLACKHAIR.png',
+        hoof: '/extra/REG_HOOVES.png',
+        skin: '/extra/REG_SKIN.png',
+        eye: '/extra/REG_EYE.png',
     },
     {
         id: 'sealbrown',
-        img: '/colours/SEALBROWN.png'
+        img: '/colours/SEALBROWN.png',
+        hair: '/hair/BLACKHAIR.png',
+        hoof: '/extra/REG_HOOVES.png',
+        skin: '/extra/REG_SKIN.png',
+        eye: '/extra/REG_EYE.png',
     },
     {
         id: 'palomino',
-        img: '/colours/PALOMINO.png'
+        img: '/colours/PALOMINO.png',
+        hair: '/hair/CREAMHAIR.png',
+        hoof: '/extra/REG_HOOVES.png',
+        skin: '/extra/REG_SKIN.png',
+        eye: '/extra/REG_EYE.png',
     },
     {
         id: 'smokeyblack',
-        img: '/colours/SMOKEYBLACK.png'
+        img: '/colours/SMOKEYBLACK.png',
+        hair: '/hair/BLACKHAIR.png',
+        hoof: '/extra/REG_HOOVES.png',
+        skin: '/extra/REG_SKIN.png',
+        eye: '/extra/REG_EYE.png',
     },
     {
         id: 'buckskin',
-        img: '/colours/BUCKSKIN.png'
+        img: '/colours/BUCKSKIN.png',
+        hair: '/hair/BLACKHAIR.png',
+        hoof: '/extra/REG_HOOVES.png',
+        skin: '/extra/REG_SKIN.png',
+        eye: '/extra/REG_EYE.png',
     },
     {
         id: 'cremello',
-        img: '/colours/CREMELLO.png'
+        img: '/colours/CREMELLO.png',
+        hair: '/hair/CREAMHAIR.png',
+        hoof: '/extra/LIGHT_HOOVES.png',
+        skin: '/extra/PINK_SKIN.png',
+        eye: '/extra/BLUE_EYE.png',
     },
     {
         id: 'smokeycream',
-        img: '/colours/SMOKEYCREAM.png'
+        img: '/colours/SMOKEYCREAM.png',
+        hair: '/hair/CREAMHAIR.png',
+        hoof: '/extra/LIGHT_HOOVES.png',
+        skin: '/extra/PINK_SKIN.png',
+        eye: '/extra/BLUE_EYE.png',
+
     },
     {
         id: 'perlino',
-        img: '/colours/PERLINO.png'
-    },
-    {
-        id: 'chestnuthair',
-        img: '/hair/CHESTNUTHAIR.png'
-    },
-    {
-        id: 'blackhair',
-        img: '/hair/BLACKHAIR.png'
-    },
-    {
-        id: 'creamhair',
-        img: '/hair/CREAMHAIR.png'
-    },
-    {
-        id: 'perlinohair',
-        img: '/hair/PERLINOHAIR.png'
+        img: '/colours/PERLINO.png',
+        hair: '/hair/PERLINOHAIR.png',
+        hoof: '/extra/LIGHT_HOOVES.png',
+        skin: '/extra/PINK_SKIN.png',
+        eye: '/extra/BLUE_EYE.png',
+
     },
     {
         id: 'silverhair',

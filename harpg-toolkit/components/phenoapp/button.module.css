@@ -1,0 +1,6 @@
+.button {
+    height: min-content;
+    width: min-content;
+    background-color: #cfe2e9;
+    position: relative;
+}

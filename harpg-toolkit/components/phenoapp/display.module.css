@@ -1,0 +1,37 @@
+.maincontainer {
+    display: inline-block;
+    position: relative;
+    background-color: #456658;
+    height: min-content;
+    width: min-content;
+    padding: 0px 20px 20px 20px;
+}
+
+.underlay {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    max-height: 500px;
+    max-width: 500px;
+    z-index: 2;
+    padding: 0px 20px 20px 20px;
+
+}
+
+.lineart {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    max-height: 500px;
+    max-width: 500px;
+    z-index: 100;
+    padding: 0px 20px 20px 20px;
+
+}
+
+.greyscale {
+    max-height: 500px;
+    max-width: 500px;
+    padding: 20px 20px 20px 20px;
+
+}
