@@ -1,5 +1,13 @@
 const colours = [
     {
+        id: 'BLANK',
+        img: '/base/blank.png',
+        hair: '/base/blank.png',
+        hoof: '/base/blank.png',
+        skin: '/base/blank.png',
+        eye: '/base/blank.png',
+    },
+    {
         id: 'chestnut',
         img: '/colours/CHESTNUT.png',
         hair: '/hair/CHESTNUTHAIR.png',

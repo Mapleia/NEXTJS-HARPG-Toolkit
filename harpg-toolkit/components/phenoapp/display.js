@@ -1,6 +1,6 @@
-// import styles from './layout.module.css'
 import useSwr from 'swr'
-import styles from '../../components/phenoapp/horsecontainer.module.css'
+import styles from './display.module.css'
+
 const fetcher = (url) => fetch(url).then((res) => res.json())
 
 export default function Display({ id }) {
@@ -12,13 +12,11 @@ export default function Display({ id }) {
     return (
         <div className={styles.maincontainer}>
                     <img className={styles.greyscale} src='/base/GREYSCALE.png'/>
-                    <div className={styles.underlay}>
-                            <img src={data.img} />
-                            <img src={data.hair} />
-                            <img src={data.hoof} />
-                            <img src={data.skin} />
-                            <img src={data.eye} />
-                    </div>
+                    <img className={styles.underlay} src={data.img} />
+                    <img className={styles.underlay} src={data.hair} />
+                    <img className={styles.underlay} src={data.hoof} />
+                    <img className={styles.underlay} src={data.skin} />
+                    <img className={styles.underlay} src={data.eye} />
                     <img className={styles.lineart} src='/base/LINEART.png'/>
         </div>
     )
