@@ -8,11 +8,10 @@
     "start": "next start"
   },
   "dependencies": {
-    "canvas": "^2.6.1",
-    "merge-images": "^2.0.0",
     "next": "9.4.4",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "swr": "^0.2.3"
+    "swr": "^0.2.3",
+    "uuid": "^8.3.0"
   }
 }

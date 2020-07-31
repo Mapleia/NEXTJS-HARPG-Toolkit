@@ -1,5 +1,79 @@
+.gridcontainer {
+    display: grid;
+    grid-template-areas:
+        "tle tle"
+        "mn side"
+        "btm btn";
+    grid-template-rows: min-content 1fr min-content;
+    grid-template-columns: min-content max-content;
+}
+
+.titlecontainer {
+    grid-area: tle; 
+    height: min-content;
+    background-color: #b5c9d4;
+    width: 100%;
+}
+
+.title {
+    text-align: center;
+}
+
+.displaycontainer {
+    grid-area: mn; 
+    background-color: #456658;
+}
+
+.menucontainer {
+    grid-area: side;
+    background-color: #b5c9d4;
+    padding: 15px;
+}
+
+.menutitle {
+    list-style: none;
+    padding: 5px;
+    font-size: 25px;
+    font-weight: bold;
+    justify-content: center;
+
+}
+
+.menuitem {
+    list-style: none;
+    padding: 2px;
+}
+
+.input {
+    padding: 2px 2px 2px 5px;
+}
+
+.input:hover {
+    background-color: #bdd3db;
+}
+
+.label {
+    padding: 2px 2px 2px 5px;
+}
+
+.bottomcontainer {
+    grid-area: btm;
+    background-color: #588874;
+}
+
+.buttonarea {
+    grid-area: btn;
+    background-color: #588874;
+    padding: 15px;
+}
+
 .button {
     background-color: #cfe2e9;
     position: relative;
     padding: 10px 10px 10px 10px;
+}
+
+.button:hover {
+    background-color: #bdd3db;
+    text-decoration: underline;
 }
