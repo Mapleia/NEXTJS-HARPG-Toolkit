@@ -1,4 +1,4 @@
-import Head from "next/Head";
+import Head from "next/head";
 import Topnav from "../topnav";
 import styles from "./side.module.css";
 import Link from "next/link";

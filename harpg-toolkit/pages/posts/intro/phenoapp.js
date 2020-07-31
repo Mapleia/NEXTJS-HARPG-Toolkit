@@ -10,24 +10,47 @@ export default class Phenoapp extends React.Component {
     super(props);
     this.state = {
       selectedbase: ['BLANK'],
+      markings: [],
       menuID: "start",
       menu: { 
         id: '',
         title: '',
         button: '',
+        beforebtn: undefined,
         menuitem: [],
-        next: ''
+        next: '',
+        before: ''
       },
       isLoading: false,
       error: null,
     };
-
-    this.handleClick = this.handleClick.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-
   }
 
-  handleClick() {
+  handleBefore = () => {
+    console.log('Click handled.');
+    console.log(this.state.menuID);
+    if (this.state.menuID === 'base') {
+      if (selectedbase.includes(e.target.value)) {
+        this.setState({ isChecked: true })
+      }
+
+    } else if (this.state.menuID === 'marking') {
+      if (markings.includes(e.target.value)) {
+        this.setState({ isChecked: true })
+      }
+    }
+
+    fetch(`http://localhost:3000/api/phenoapp/menu?id=${this.state.menu.before}`)
+    .then(response => response.json())
+    .then(data => this.setState({ 
+      menuID: this.state.menu.before,
+      menu: data, 
+      isLoading: false 
+    }))
+    .catch(error => this.setState({ error, isLoading: false }));
+  }
+
+  handleNext = () => {
     console.log('Click handled.');
 
     fetch(`http://localhost:3000/api/phenoapp/menu?id=${this.state.menu.next}`)
@@ -40,32 +63,48 @@ export default class Phenoapp extends React.Component {
     .catch(error => this.setState({ error, isLoading: false }));
   }
 
-  handleChange(e) {
+  handleChange = (e) => {
     console.log('Change handled.');
 
-    if (!this.state.selectedbase.includes(e.target.value)) { 
-      this.setState({selectedbase: this.state.selectedbase.concat(e.target.value)}, () => {
-        console.log(this.state.selectedbase);
-      });
-      console.log("Added to the array: " + e.target.value);
-
-    } else if ( !((this.state.selectedbase.length == 1) && (this.state.selectedbase.includes('BLANK'))) ) {
-      // If array is not ['BLANK']
-
-      const index = this.state.selectedbase.indexOf(e.target.value);
-      console.log('Index is: ' + index);
-
-      if ((index > -1)) {
-        this.setState({selectedbase: this.state.selectedbase.filter(function(colour) {
-          return colour !== e.target.value
-        }
-        )}, () => {
+    if (this.state.menuID === 'base') {
+      if (!this.state.selectedbase.includes(e.target.value)) { 
+        this.setState({selectedbase: this.state.selectedbase.concat(e.target.value)}, () => {
           console.log(this.state.selectedbase);
         });
+        console.log("Added to the array: " + e.target.value);
+  
+      } else if ( !((this.state.selectedbase.length == 1) && (this.state.selectedbase.includes('BLANK'))) ) {
+        // If array is not ['BLANK']
+  
+        const index = this.state.selectedbase.indexOf(e.target.value);
+  
+        if ((index > -1)) {
+          this.setState({selectedbase: this.state.selectedbase.filter(function(colour) {
+            return colour !== e.target.value
+          }
+          )}, () => {
+            console.log(this.state.selectedbase);
+          });
+        }
+      }
+    } else if (this.state.menuID === 'marking') {
+      if (!this.state.markings.includes(e.target.value)) { 
+        this.setState({markings: this.state.markings.concat(e.target.value)}, () => {
+          console.log(this.state.markings);
+        });
+        console.log("Added to the array: " + e.target.value);
+      } else {
+        const index2 = this.state.markings.indexOf(e.target.value);
+        if ((index2 > -1)) {
+          this.setState({markings: this.state.markings.filter(function(marking) {
+            return marking !== e.target.value
+          }
+          )}, () => {
+            console.log(this.state.markings);
+          });
+        }
       }
     }
-
-    console.log(this.state.selectedbase);
   }
 
   componentDidMount() {
@@ -92,22 +131,30 @@ export default class Phenoapp extends React.Component {
           <div className={styles.displaycontainer}>
             <Display 
               className={styles.display}
-              id={this.state.selectedbase[this.state.selectedbase.length - 1]}/>
+              id={this.state.selectedbase[this.state.selectedbase.length - 1]}>
+                { this.state.markings.map((item) => (
+                  <img className={styles.underlay} key={item} src={'/white_marking/' + item + '.png'}/>))}
+            </Display>
           </div>
 
           <ul className={styles.menucontainer}>
             <li className={styles.menutitle}>MENU</li>
             { this.state.menu.menuitem.map((item) => (
               <li className={styles.menuitem} key={item.value}>
-                  <input className={styles.input} type='checkbox' value={item.value} onChange={e => this.handleChange(e)}/>
+                  <input 
+                    className={styles.input} 
+                    type='checkbox' 
+                    value={item.value} 
+                    onChange={e => this.handleChange(e)}/>
                   <label className={styles.label} htmlFor={item.value}>{item.text}</label>
               </li>))}
           </ul>
 
           <div className={styles.bottomcontainer}></div>
-          
+
           <div className={styles.buttonarea}>
-            <button className={styles.button} onClick={this.handleClick}>{this.state.menu.button}</button>
+            <button className={styles.button} onClick={this.handleBefore}>{this.state.menu.beforebtn}</button>
+            <button className={styles.button} onClick={this.handleNext}>{this.state.menu.button}</button>
           </div>
         </div>      
       </Side>

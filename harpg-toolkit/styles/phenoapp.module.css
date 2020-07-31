@@ -11,12 +11,13 @@
 .titlecontainer {
     grid-area: tle; 
     height: min-content;
-    background-color: #b5c9d4;
+    background-color: #588874;
     width: 100%;
 }
 
 .title {
     text-align: center;
+    color: white;
 }
 
 .displaycontainer {
@@ -24,9 +25,20 @@
     background-color: #456658;
 }
 
+.underlay {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    max-height: 500px;
+    max-width: 500px;
+    z-index: 2;
+    padding: 0px 20px 20px 20px;
+
+}
+
 .menucontainer {
     grid-area: side;
-    background-color: #b5c9d4;
+    background-color: #3a574a;
     padding: 15px;
 }
 
@@ -34,6 +46,7 @@
     list-style: none;
     padding: 5px;
     font-size: 25px;
+    color: white;
     font-weight: bold;
     justify-content: center;
 
@@ -42,9 +55,13 @@
 .menuitem {
     list-style: none;
     padding: 2px;
+    color: white;
+    font-weight: lighter;
+    text-transform: uppercase;
 }
 
 .input {
+    cursor: pointer;
     padding: 2px 2px 2px 5px;
 }
 
@@ -68,12 +85,51 @@
 }
 
 .button {
-    background-color: #cfe2e9;
-    position: relative;
+    border-radius: 15px;
+    border: 3px solid #fff;
+    cursor: pointer;
+	color: #fff;
+    overflow: hidden;
+    display: inline-block;
+    text-transform: uppercase;
     padding: 10px 10px 10px 10px;
+    -webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+    transition: all 0.3s;
+    background: none;
+    margin: 5px;
+}
+
+.button:after {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.button:active {
+    border-color: #9be2c5;
+	color: #9be2c5;
 }
 
 .button:hover {
-    background-color: #bdd3db;
-    text-decoration: underline;
+    background: #58b890;
+}
+
+.button:before {
+    height: 100%;
+    color: #fff;
+    -webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.button:active:before {
+	color: #9be2c5;
+}
+
+.button:empty {
+    display: none;
 }

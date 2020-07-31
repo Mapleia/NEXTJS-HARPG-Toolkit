@@ -3,7 +3,7 @@ import styles from './display.module.css'
 
 const fetcher = (url) => fetch(url).then((res) => res.json())
 
-export default function Display({ id }) {
+export default function Display({ id, children }) {
     const { data, error } = useSwr(`/api/phenoapp/colour?id=${id}`, fetcher)
 
     if (error) return <p>Error loading the images.</p>
@@ -13,8 +13,9 @@ export default function Display({ id }) {
         <div className={styles.maincontainer}>
                     <img className={styles.greyscale} src='/base/GREYSCALE.png'/>
                     <img className={styles.underlay} src={data.img} />
-                    <img className={styles.underlay} src={data.hair} />
                     <img className={styles.underlay} src={data.hoof} />
+                    { children }
+                    <img className={styles.underlay} src={data.hair} />
                     <img className={styles.underlay} src={data.skin} />
                     <img className={styles.underlay} src={data.eye} />
                     <img className={styles.lineart} src='/base/LINEART.png'/>
