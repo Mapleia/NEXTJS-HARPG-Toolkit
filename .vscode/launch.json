@@ -8,7 +8,7 @@
         "skipFiles": ["<node_internals>/**"],
         "port": 9229,
         "sourceMapPathOverrides": {
-            "webpack:///./*": "${workspaceRoot}/subfolder/*",
+            "webpack:///./*": "${workspaceRoot}/harpg-toolkit/*"
           }
       }
     ]
