@@ -21,24 +21,15 @@ export default class Phenoapp extends React.Component {
         next: '',
         before: ''
       },
+      isChecked: {},
       isLoading: false,
       error: null,
     };
   }
 
   handleBefore = () => {
-    console.log('Click handled.');
+    console.log('handleBefore has been triggered.');
     console.log(this.state.menuID);
-    if (this.state.menuID === 'base') {
-      if (selectedbase.includes(e.target.value)) {
-        this.setState({ isChecked: true })
-      }
-
-    } else if (this.state.menuID === 'marking') {
-      if (markings.includes(e.target.value)) {
-        this.setState({ isChecked: true })
-      }
-    }
 
     fetch(`http://localhost:3000/api/phenoapp/menu?id=${this.state.menu.before}`)
     .then(response => response.json())
@@ -51,7 +42,7 @@ export default class Phenoapp extends React.Component {
   }
 
   handleNext = () => {
-    console.log('Click handled.');
+    console.log('handleNext has been triggered.');
 
     fetch(`http://localhost:3000/api/phenoapp/menu?id=${this.state.menu.next}`)
     .then(response => response.json())
@@ -64,43 +55,55 @@ export default class Phenoapp extends React.Component {
   }
 
   handleChange = (e) => {
-    console.log('Change handled.');
-
+    console.log('handleChange has been triggered.');
+    let index;
+    let obj = this.state.isChecked;
     if (this.state.menuID === 'base') {
-      if (!this.state.selectedbase.includes(e.target.value)) { 
-        this.setState({selectedbase: this.state.selectedbase.concat(e.target.value)}, () => {
-          console.log(this.state.selectedbase);
+      if (!this.state.selectedbase.includes(e.target.value)) {
+        obj[e.target.value] = 'checked';
+        this.setState({
+          selectedbase: this.state.selectedbase.concat(e.target.value),
+          isChecked: obj
+        }, () => {
+          console.log(this.state);
         });
-        console.log("Added to the array: " + e.target.value);
-  
+          
+      console.log("Added to the array: " + e.target.value);
+    
       } else if ( !((this.state.selectedbase.length == 1) && (this.state.selectedbase.includes('BLANK'))) ) {
-        // If array is not ['BLANK']
-  
-        const index = this.state.selectedbase.indexOf(e.target.value);
-  
-        if ((index > -1)) {
-          this.setState({selectedbase: this.state.selectedbase.filter(function(colour) {
-            return colour !== e.target.value
+          // If array is not ['BLANK']
+          index = this.state.selectedbase.indexOf(e.target.value);
+          obj[e.target.value] = false;
+          if ((index > -1)) {
+            this.setState({
+              selectedbase: this.state.selectedbase.filter(colour => colour !== e.target.value),
+              isChecked: obj
+            }, () => {
+              console.log(this.state);
+            });
           }
-          )}, () => {
-            console.log(this.state.selectedbase);
-          });
-        }
       }
+
     } else if (this.state.menuID === 'marking') {
-      if (!this.state.markings.includes(e.target.value)) { 
-        this.setState({markings: this.state.markings.concat(e.target.value)}, () => {
-          console.log(this.state.markings);
+      if (!this.state.markings.includes(e.target.value)) {
+        obj[e.target.value] = 'checked';
+        this.setState({
+          markings: this.state.markings.concat(e.target.value),
+          isChecked: obj
+        }, () => {
+          console.log(this.state);
         });
         console.log("Added to the array: " + e.target.value);
-      } else {
-        const index2 = this.state.markings.indexOf(e.target.value);
-        if ((index2 > -1)) {
-          this.setState({markings: this.state.markings.filter(function(marking) {
-            return marking !== e.target.value
-          }
-          )}, () => {
-            console.log(this.state.markings);
+  
+      } else {  
+        index = this.state.markings.indexOf(e.target.value);
+        obj[e.target.value] = false;
+        if ((index > -1)) {
+          this.setState({
+            markings: this.state.markings.filter(colour => colour !== e.target.value),
+            isChecked: obj
+            }, () => {
+            console.log(this.state);
           });
         }
       }
@@ -142,11 +145,12 @@ export default class Phenoapp extends React.Component {
             { this.state.menu.menuitem.map((item) => (
               <li className={styles.menuitem} key={item.value}>
                   <input 
+                    checked={!!this.state.isChecked[item.value]}
                     className={styles.input} 
                     type='checkbox' 
                     value={item.value} 
                     onChange={e => this.handleChange(e)}/>
-                  <label className={styles.label} htmlFor={item.value}>{item.text}</label>
+                  <label className={styles.label} htmlFor={item.value} htmlFor={item.value}>{item.text}</label>
               </li>))}
           </ul>
 
