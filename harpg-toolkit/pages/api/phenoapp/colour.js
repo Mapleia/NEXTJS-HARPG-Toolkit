@@ -1,6 +1,7 @@
 const colours = [
     {
-        id: 'BLANK',
+        base: ['BLANK'],
+        gene: '',
         img: '/base/blank.png',
         hair: '/base/blank.png',
         hoof: '/base/blank.png',
@@ -8,7 +9,8 @@ const colours = [
         eye: '/base/blank.png',
     },
     {
-        id: 'chestnut',
+        base: ['chestnut'],
+        gene: '',
         img: '/colours/CHESTNUT.png',
         hair: '/hair/CHESTNUTHAIR.png',
         hoof: '/extra/REG_HOOVES.png',
@@ -16,7 +18,9 @@ const colours = [
         eye: '/extra/REG_EYE.png',
     },
     {
-        id: 'black',
+
+        base: ['black'],
+        gene: '',
         img: '/colours/BLACK.png',
         hair: '/hair/BLACKHAIR.png',
         hoof: '/extra/REG_HOOVES.png',
@@ -25,7 +29,8 @@ const colours = [
         
     },
     {
-        id: 'bay',
+        base: ['bay'],
+        gene: '',
         img: '/colours/BAY.png',
         hair: '/hair/BLACKHAIR.png',
         hoof: '/extra/REG_HOOVES.png',
@@ -33,7 +38,8 @@ const colours = [
         eye: '/extra/REG_EYE.png',
     },
     {
-        id: 'sealbrown',
+        base: ['sealbrown'],
+        gene: '',
         img: '/colours/SEALBROWN.png',
         hair: '/hair/BLACKHAIR.png',
         hoof: '/extra/REG_HOOVES.png',
@@ -41,7 +47,8 @@ const colours = [
         eye: '/extra/REG_EYE.png',
     },
     {
-        id: 'palomino',
+        base: ['chestnut'],
+        gene: 'nCr',
         img: '/colours/PALOMINO.png',
         hair: '/hair/CREAMHAIR.png',
         hoof: '/extra/REG_HOOVES.png',
@@ -49,7 +56,8 @@ const colours = [
         eye: '/extra/REG_EYE.png',
     },
     {
-        id: 'smokeyblack',
+        base: ['black'],
+        gene: 'nCr',
         img: '/colours/SMOKEYBLACK.png',
         hair: '/hair/BLACKHAIR.png',
         hoof: '/extra/REG_HOOVES.png',
@@ -57,7 +65,8 @@ const colours = [
         eye: '/extra/REG_EYE.png',
     },
     {
-        id: 'buckskin',
+        base: ['bay', 'sealbrown'],
+        gene: 'nCr',
         img: '/colours/BUCKSKIN.png',
         hair: '/hair/BLACKHAIR.png',
         hoof: '/extra/REG_HOOVES.png',
@@ -65,7 +74,8 @@ const colours = [
         eye: '/extra/REG_EYE.png',
     },
     {
-        id: 'cremello',
+        base: ['chestnut'],
+        gene: 'CrCr',
         img: '/colours/CREMELLO.png',
         hair: '/hair/CREAMHAIR.png',
         hoof: '/extra/LIGHT_HOOVES.png',
@@ -73,7 +83,8 @@ const colours = [
         eye: '/extra/BLUE_EYE.png',
     },
     {
-        id: 'smokeycream',
+        base: ['black'],
+        gene: 'CrCr',
         img: '/colours/SMOKEYCREAM.png',
         hair: '/hair/CREAMHAIR.png',
         hoof: '/extra/LIGHT_HOOVES.png',
@@ -82,7 +93,8 @@ const colours = [
 
     },
     {
-        id: 'perlino',
+        base: ['bay'],
+        gene: 'CrCr',
         img: '/colours/PERLINO.png',
         hair: '/hair/PERLINOHAIR.png',
         hoof: '/extra/LIGHT_HOOVES.png',
@@ -91,17 +103,66 @@ const colours = [
 
     },
     {
-        id: 'silverhair',
-        img: '/hair/SILVERHAIR.png'
+        base: ['bay', 'black'],
+        gene: 'nZ',
+        img: undefined,
+        hair: '/hair/SILVERHAIR.png',
+        hoof: undefined,
+        skin: undefined,
+        eye: undefined,
     }
 ];
 
-export default (req, res) => {
-    if (req.query != {}) {
-        const data = colours.find(x => x.id === req.query.id);
-        console.log(data)
-        res.status(200).send(data);
-    } else {
-        res.status(200).send(colours)
+
+function GiveItem(query) {
+    var found = {};
+      colours.find(function (item) {
+        var alltrue = [];
+        for (var key in query) {
+            console.log(key)
+            console.log('Item item is: ' + item[key]);
+            console.log('Query item is: ' + query[key])
+            if (Array.isArray(item[key]) && item[key].includes(query[key])) {
+                console.log(item[key].includes(query[key]))
+                alltrue.push(true);
+            }
+            if (item[key] == undefined || item[key] != query[key]) {
+                console.log(item[key] == query[key])
+                alltrue.push(false);
+            }
+            else {
+                alltrue.push(true);
+            }
+        }
+        
+        if (alltrue.every(el => el === true)) {
+          console.log(item)
+          found = item;
+        }
+        })
+    return found;
     }
+
+export default (req, res) => {
+    var lookingkey = req.query;
+    console.log('Colour API (the query):');
+    console.log(lookingkey);
+    
+
+    try {
+        var data = GiveItem(lookingkey);
+        if (data == {}) {
+            console.log('Data could not be found.')
+            res.status(404).send(colours[0])
+        }
+        console.log('List of colour objects.')
+        console.log(data);
+        res.status(200).send(data);
+    }
+    catch(err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+
+    
 }

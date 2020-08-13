@@ -11,6 +11,10 @@
   max-height: 50px;
 }
 
+.mainLogo:hover {
+  cursor: pointer;
+}
+
 .homeLink {
   max-height: 50px;
   height: auto;

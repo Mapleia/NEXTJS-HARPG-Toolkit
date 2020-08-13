@@ -43,7 +43,6 @@
 }
 
 .menutitle {
-    list-style: none;
     padding: 5px;
     font-size: 25px;
     color: white;
@@ -54,7 +53,7 @@
 
 .menuitem {
     list-style: none;
-    padding: 2px;
+    padding: 2px 2px 2px 5px;
     color: white;
     font-weight: lighter;
     text-transform: uppercase;
@@ -68,11 +67,7 @@
 .input:hover {
     background-color: #bdd3db;
 }
-
-.label {
-    padding: 2px 2px 2px 5px;
-}
-
+    
 .bottomcontainer {
     grid-area: btm;
     background-color: #588874;
