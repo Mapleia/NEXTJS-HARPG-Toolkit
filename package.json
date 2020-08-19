@@ -1,11 +1,12 @@
 {
   "name": "harpg-toolkit-nextjs",
   "version": "0.2.0",
-  "private": true,
+  "private": false,
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "debug": "node --inspect ./node_modules/next/dist/bin/next"
   },
   "dependencies": {
     "cross-env": "^7.0.2",

@@ -76,8 +76,6 @@ const menus = [
 export default (req, res) => {
     if (req.query != {}) {
         const data = menus.find(x => x.id === req.query.id);
-        console.log('Menu API.')
-        console.log(data)
         res.status(200).send(data);
     } else {
         res.status(200).send(menus)
