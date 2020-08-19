@@ -113,37 +113,7 @@ const colours = [
     }
 ];
 
-/*
-function GiveItem(query) {
-    console.log(query)
-    var found = {};
-      colours.find(function (item) {
-        var alltrue = [];
-        for (var key in query) {
-            console.log('Key is: ' + key)
-            console.log('Item item is: ' + item[key]);
-            console.log('Query item is: ' + query[key])
-            if (Array.isArray(item[key]) && item[key].includes(query[key])) {
-                console.log('Array has query: ' + item[key].includes(query[key]))
-                alltrue.push(true);
-            }
-            if (item[key] == undefined || item[key] != query[key]) {
-                console.log(' item[key] == query[key]: ' + item[key] == query[key])
-                alltrue.push(false);
-            }
-            else {
-                alltrue.push(true);
-            }
-        }
-        //console.log(item)
-        if (alltrue.every(el => el === true)) {
-          console.log(item)
-          found = item;
-        }
-        })
-    return found;
-}
-*/
+
 function GiveItem(query) {
     var found = {};
       colours.find(function (item) {
@@ -176,10 +146,12 @@ export default (req, res) => {
     try {
         var data = GiveItem(lookingkey);
         if (data == {}) {
-            console.log('Data could not be found.')
+            console.error('Data could not be found.')
             res.status(404).send(colours[0])
+        } else {
+            res.status(200).send(data);
         }
-        res.status(200).send(data);
+        
     }
     catch(err) {
         console.log(err);
