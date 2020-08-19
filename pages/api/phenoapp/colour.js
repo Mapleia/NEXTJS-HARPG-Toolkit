@@ -105,11 +105,11 @@ const colours = [
     {
         base: ['bay', 'black'],
         gene: 'nZ',
-        img: undefined,
+        img: null,
         hair: '/hair/SILVERHAIR.png',
-        hoof: undefined,
-        skin: undefined,
-        eye: undefined,
+        hoof: null,
+        skin: null,
+        eye: null,
     }
 ];
 

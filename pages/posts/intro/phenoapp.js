@@ -26,126 +26,141 @@ export default class Phenoapp extends React.Component {
     super(props);
     this.state = {
       selectedbase: 'BLANK', // base colour
-      minormarking: [],          // minor white markings
-      genes: [],           // All genes
+      minormarking: [],      // minor white markings
+      genes: [],             // All genes
       currentmenu: "start",
-      menu: { 
-        id: '',
-        title: '',
-        type: '',
-        button: '',
+      menu: {
+        id: 'start',
+        title: 'Toolkit: Horse Phenotypes',
+        type: 'checkbox',
+        nextbtn: 'START',
         beforebtn: undefined,
         menuitem: [],
-        next: '',
-        before: ''
+        next: 'base',
+        before: undefined
       },
       isChecked: {},
+      isDisabled: {},
       isLoading: false,
       error: null,
     };
   }
 
-  handleBefore = () => {
-    // Handler for the before button. Reloads menu.
-    fetch(`http://localhost:3000/api/phenoapp/menu?id=${this.state.menu.before}`)
+  handleButton = (name) => {
+    fetch(`http://localhost:3000/api/phenoapp/menu?id=${this.state.menu[name]}`)
     .then(response => response.json())
     .then(data => this.setState({ 
-      currentmenu: this.state.menu.before,
+      currentmenu: this.state.menu[name],
       menu: data, 
       isLoading: false 
     }))
     .catch(error => this.setState({ error, isLoading: false }));
   }
 
-  handleNext = () => {
-    // Handler for the NEXT button. Reloads menu.
-    fetch(`http://localhost:3000/api/phenoapp/menu?id=${this.state.menu.next}`)
-    .then(response => response.json())
-    .then(data => this.setState({ 
-      currentmenu: this.state.menu.next,
-      menu: data, 
-      isLoading: false 
-    }))
-    .catch(error => this.setState({ error, isLoading: false }));
+  // Used to disable Menu items depending on the selected base colour.
+  // If Chestnut, disable nZ
+  componentDidUpdate = () => {
+    if (this.state.currentmenu == 'dilutesMods') {
+      let dis = this.state.isDisabled;
+      if (this.state.selectedbase == 'chestnut') {
+        dis['nZ'] = true;
+        this.setState({ isDisabled: dis })
+  
+      } else if (this.state.isDisabled['nZ']) {
+        dis['nZ'] = false;
+        this.setState({ isDisabled: dis})
+      }
+    }
+
   }
 
-
-
-
+  // Handle changes made by user interacted with the menu.
   handleChange = (e) => {
-
     // Handle changes made by the user with the menu.
     console.log('handleChange has been triggered.');
-    let obj = this.state.isChecked;
+    let chk = this.state.isChecked;
     let baseValue = e.target.getAttribute('basevalue');
+    let arr = [];
 
     if (this.state.menu.id === 'base') {
       this.setState({
           selectedbase: baseValue,
-        }, () => {
-          console.log(this.state);
         });
 
     } else if (this.state.menu.id === 'minormarking') {
+      // If minormarking doesn't already have the marking:
       if (!this.state.minormarking.includes(baseValue)) {
-        obj[baseValue] = 'checked';
+        // isChecked: {
+        //   FETLOCK_4: 'checked',
+        // }
+        chk[baseValue] = 'checked';
         this.setState({
           minormarking: this.state.minormarking.concat(baseValue),
-          isChecked: obj
-        }, () => {
-          console.log(this.state);
-        });
-        console.log("Added to the array: " + baseValue);
-  
+          isChecked: chk
+        });  
       } else {  
-        obj[baseValue] = false;
+        // If minormarking has the value, isChecked is false, and is removed from array
+        chk[baseValue] = false;
+        arr = this.state.minormarking;
+        arr.remove(baseValue);
+
         this.setState({
-          minormarking: this.state.minormarking.filter(c => c !== baseValue),
-          isChecked: obj
-        }, () => {
-          console.log(this.state);
+          minormarking: arr,
+          isChecked: chk
         });
       }
     } else if (this.state.menu.id === 'dilutesMods') {
+      // If genes doesn't already have the gene: 
       if (!this.state.genes.includes(baseValue)) {
         if (this.state.genes.includes('nCr') && (baseValue == 'CrCr')) {
-          obj[baseValue] = 'checked';
-          obj['nCr'] = false;
+        // If genes has nCr, and user selected CrCr
+          chk[baseValue] = 'checked';
+          chk['nCr'] = false;
+
+          arr = this.state.genes;
+          arr.remove('nCr');
+          arr.concat(baseValue);
+
           this.setState({
-            genes: this.state.genes.remove('nCr'),
-            isChecked: obj
+            genes: arr,
+            isChecked: chk
           })
-        } 
-        if (this.state.genes.includes('CrCr') && (baseValue == 'nCr')) {
-          obj[baseValue] = 'checked';
-          obj['CrCr'] = false;
+        } else if (this.state.genes.includes('CrCr') && (baseValue == 'nCr')) {
+          // If genes has CrCr, and user selected nCr
+          chk[baseValue] = 'checked';
+          chk['CrCr'] = false;
+
+          arr = this.state.genes;
+          arr.remove('CrCr');
+          arr.concat(baseValue);
+
           this.setState({
-            genes: this.state.genes.remove('CrCr'),
-            isChecked: obj
+            genes: arr,
+            isChecked: chk
           })
+        } else {
+          chk[baseValue] = 'checked';
+          this.setState({
+            genes: this.state.genes.concat(baseValue),
+            isChecked: chk
+          });
         }
-        obj[baseValue] = 'checked';
+      } else {
+        // If genes does have the gene:  
+        chk[baseValue] = false;
+        arr = this.state.genes;
+        arr = arr.remove(baseValue);
+
         this.setState({
-          genes: this.state.genes.concat(baseValue),
-          isChecked: obj
-        }, () => {
-          console.log(this.state);
-        });
-        console.log("Added to the array: " + baseValue);
-  
-      } else {  
-        obj[baseValue] = false;
-        this.setState({
-          genes: this.state.genes.filter(c => c !== baseValue),
-          isChecked: obj
-        }, () => {
-          console.log(this.state);
+          genes: arr,
+          isChecked: chk
         });
       }
     }
-    
   }
 
+  // Once everything is mounted, call MENU API and populate with data.
+  /*
   componentDidMount() {
     this.setState({ isLoading: true });
 
@@ -153,7 +168,8 @@ export default class Phenoapp extends React.Component {
     .then(response => response.json())
     .then(data => this.setState({ menu: data, isLoading: false }))
     .catch(error => this.setState({ error, isLoading: false }));
-  }
+
+  }*/
 
   render() {
     if (this.state.isLoading) {
@@ -170,22 +186,22 @@ export default class Phenoapp extends React.Component {
           <div className={styles.displaycontainer}>
             <Display 
               className={styles.display}
-              selectedbase={this.state.selectedbase}
+              base={this.state.selectedbase}
               genes={this.state.genes}
               minormarking={this.state.minormarking}/>
           </div>
           
           <Menu 
-            base={this.state.selectedbase} 
             menu={this.state.menu}
+            Disabled={this.state.isDisabled}
             Checked={this.state.isChecked}
             changeFn={e => this.handleChange(e)}/>
 
           <div className={styles.bottomcontainer}></div>
 
           <div className={styles.buttonarea}>
-            <button className={styles.button} onClick={this.handleBefore}>{this.state.menu.beforebtn}</button>
-            <button className={styles.button} onClick={this.handleNext}>{this.state.menu.button}</button>
+            <button className={styles.button} onClick={() => {this.handleButton('before')}}>{this.state.menu.beforebtn}</button>
+            <button className={styles.button} onClick={() => {this.handleButton('next')}}>{this.state.menu.nextbtn}</button>
           </div>
         </div>      
       </Side>

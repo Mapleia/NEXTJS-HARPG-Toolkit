@@ -5,15 +5,18 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start",
-    "debug": "node --inspect ./node_modules/next/dist/bin/next"
+    "start": "next start"
   },
   "dependencies": {
     "cross-env": "^7.0.2",
     "iconv-lite": "^0.6.2",
-    "next": "^9.5.0",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
+    "next": "^9.5.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "swr": "^0.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Mapleia/NEXTJS-HARPG-Toolkit.git"
   }
 }

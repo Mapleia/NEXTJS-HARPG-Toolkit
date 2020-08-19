@@ -1,6 +1,6 @@
 import styles from '../../styles/phenoapp.module.css'
 
-export default function Menu({ base, menu, Checked, changeFn }) {
+export default function Menu({ menu, Disabled, Checked, changeFn }) {
     if (menu.id == 'base') {
         return (
             <form className={styles.menucontainer}>
@@ -32,6 +32,7 @@ export default function Menu({ base, menu, Checked, changeFn }) {
                         <input
                             name={menu.base}
                             checked={!!Checked[item.base]}
+                            disabled={!!Disabled[item.base]}
                             className={styles.input} 
                             type='checkbox' 
                             basevalue={item.base}
