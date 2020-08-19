@@ -8,7 +8,7 @@ import Menu from '../../../components/phenoapp/menu';
 // Styling:
 import styles from '../../../styles/phenoapp.module.css';
 
-// 
+// Mutates array, so assign to new variable before using with states
 Array.prototype.remove = function() {
   var what, a = arguments, L = a.length, ax;
   while (L && this.length) {
@@ -19,7 +19,6 @@ Array.prototype.remove = function() {
   }
   return this;
 };
-
 
 export default class Phenoapp extends React.Component {
   constructor(props) {
@@ -75,7 +74,7 @@ export default class Phenoapp extends React.Component {
   }
 
   // Handle changes made by user interacted with the menu.
-  handleChange = (e) => {
+  handleMenu = (e) => {
     // Handle changes made by the user with the menu.
     console.log('handleChange has been triggered.');
     let chk = this.state.isChecked;
@@ -159,18 +158,6 @@ export default class Phenoapp extends React.Component {
     }
   }
 
-  // Once everything is mounted, call MENU API and populate with data.
-  /*
-  componentDidMount() {
-    this.setState({ isLoading: true });
-
-    fetch(`http://localhost:3000/api/phenoapp/menu?id=${this.state.currentmenu}`)
-    .then(response => response.json())
-    .then(data => this.setState({ menu: data, isLoading: false }))
-    .catch(error => this.setState({ error, isLoading: false }));
-
-  }*/
-
   render() {
     if (this.state.isLoading) {
       return <Side><p>Loading...</p></Side>;
@@ -195,7 +182,7 @@ export default class Phenoapp extends React.Component {
             menu={this.state.menu}
             Disabled={this.state.isDisabled}
             Checked={this.state.isChecked}
-            changeFn={e => this.handleChange(e)}/>
+            changeFn={e => this.handleMenu(e)}/>
 
           <div className={styles.bottomcontainer}></div>
 
