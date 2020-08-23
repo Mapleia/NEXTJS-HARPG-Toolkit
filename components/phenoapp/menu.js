@@ -1,6 +1,6 @@
 import styles from '../../styles/phenoapp.module.css'
 
-export default function Menu({ menu, Disabled, Checked, changeFn }) {
+export default function Menu({ base, menu, Disabled, Checked, changeFn }) {
     if (menu.id == 'base') {
         return (
             <form className={styles.menucontainer}>

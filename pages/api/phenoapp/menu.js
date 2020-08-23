@@ -3,7 +3,7 @@ const menus = [
         id: 'start',
         title: 'Toolkit: Horse Phenotypes',
         type: 'checkbox',
-        button: 'START',
+        nextbtn: 'START',
         beforebtn: undefined,
         menuitem: [],
         next: 'base',
@@ -13,7 +13,7 @@ const menus = [
         id: 'base',
         title: 'Choose Your Base Colour',
         type: 'radio',
-        button: 'NEXT',
+        nextbtn: 'NEXT',
         beforebtn: 'back',
         menuitem: [
             { base:'chestnut', text: 'Chestnut' }, 
@@ -28,7 +28,7 @@ const menus = [
         id: 'minormarking',
         title: 'Choose Your Markings',
         type: 'checkbox',
-        button: 'NEXT',
+        nextbtn: 'NEXT',
         beforebtn: 'back',
         menuitem: [
             { base: 'CORONET_1', text: 'Coronet - Foot #1' }, 
@@ -55,7 +55,7 @@ const menus = [
         id: 'dilutesMods',
         title: 'Choose your Dilutes and Modifiers and Markings',
         type: 'checkbox',
-        button: undefined,
+        nextbtn: undefined,
         beforebtn: 'back',
         menuitem: [
             {base: 'nCr', text: 'Single Cream (Palomino / Buckskin / Smokey Black)'},

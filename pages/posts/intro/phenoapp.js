@@ -9,16 +9,6 @@ import Menu from '../../../components/phenoapp/menu';
 import styles from '../../../styles/phenoapp.module.css';
 
 // Mutates array, so assign to new variable before using with states
-Array.prototype.remove = function() {
-  var what, a = arguments, L = a.length, ax;
-  while (L && this.length) {
-      what = a[--L];
-      while ((ax = this.indexOf(what)) !== -1) {
-          this.splice(ax, 1);
-      }
-  }
-  return this;
-};
 
 export default class Phenoapp extends React.Component {
   constructor(props) {
@@ -58,19 +48,18 @@ export default class Phenoapp extends React.Component {
 
   // Used to disable Menu items depending on the selected base colour.
   // If Chestnut, disable nZ
-  componentDidUpdate = () => {
-    if (this.state.currentmenu == 'dilutesMods') {
+  componentDidUpdate = (prevProps, prevState) => {
+    if (prevState.selectedbase !== this.state.selectedbase) {
       let dis = this.state.isDisabled;
       if (this.state.selectedbase == 'chestnut') {
         dis['nZ'] = true;
         this.setState({ isDisabled: dis })
-  
+      
       } else if (this.state.isDisabled['nZ']) {
-        dis['nZ'] = false;
-        this.setState({ isDisabled: dis})
+          dis['nZ'] = false;
+          this.setState({ isDisabled: dis})
       }
     }
-
   }
 
   // Handle changes made by user interacted with the menu.
@@ -118,7 +107,7 @@ export default class Phenoapp extends React.Component {
 
           arr = this.state.genes;
           arr.remove('nCr');
-          arr.concat(baseValue);
+          arr.push(baseValue);
 
           this.setState({
             genes: arr,
@@ -131,7 +120,7 @@ export default class Phenoapp extends React.Component {
 
           arr = this.state.genes;
           arr.remove('CrCr');
-          arr.concat(baseValue);
+          arr.push(baseValue);
 
           this.setState({
             genes: arr,
@@ -179,10 +168,11 @@ export default class Phenoapp extends React.Component {
           </div>
           
           <Menu 
+            base={this.state.selectedbase}
             menu={this.state.menu}
             Disabled={this.state.isDisabled}
             Checked={this.state.isChecked}
-            changeFn={e => this.handleMenu(e)}/>
+            changeFn={(e) => {this.handleMenu(e)}}/>
 
           <div className={styles.bottomcontainer}></div>
 
