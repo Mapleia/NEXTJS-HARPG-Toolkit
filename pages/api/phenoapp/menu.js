@@ -13,7 +13,7 @@ const menus = [
         id: 'base',
         title: 'Choose Your Base Colour',
         type: 'radio',
-        nextbtn: 'NEXT',
+        nextbtn: 'next',
         beforebtn: 'back',
         menuitem: [
             { base:'chestnut', text: 'Chestnut' }, 
@@ -21,14 +21,14 @@ const menus = [
             { base: 'sealbrown', text: 'Seal Brown'},
             { base: 'black', text: 'Black' }
         ],
-        next: 'minormarking',
+        next: 'minorMarking',
         before: 'start'
     },
     {
-        id: 'minormarking',
+        id: 'minorMarking',
         title: 'Choose Your Markings',
         type: 'checkbox',
-        nextbtn: 'NEXT',
+        nextbtn: 'next',
         beforebtn: 'back',
         menuitem: [
             { base: 'CORONET_1', text: 'Coronet - Foot #1' }, 
@@ -53,22 +53,40 @@ const menus = [
     },
     {
         id: 'dilutesMods',
-        title: 'Choose your Dilutes and Modifiers and Markings',
+        title: 'Choose your Dilutes and Modifiers Genes',
         type: 'checkbox',
-        nextbtn: undefined,
+        nextbtn: 'next',
         beforebtn: 'back',
         menuitem: [
             {base: 'nCr', text: 'Single Cream (Palomino / Buckskin / Smokey Black)'},
             {base: 'CrCr', text: 'Double Cream (Cremello / Perlino / Smokey Cream)'},
-            {base: 'nD', text: 'Dun (Red Dun / Bay Dun / Grulla)'},
-            {base: 'prlprl', text: 'Pearl ()'},
+            {base: 'nD', text: 'Dun (Red Dun / Bay Dun / Grulla)'}, // Still needs Bay & Grullo
+            {base: 'prlprl', text: 'Pearl (Apricot / Bay Pearl / Black Pearl)'}, // Still needs all
             {base: 'nCh', text: 'Champagne (Gold / Amber / Classic)'},
-            {base: 'nG', text: 'Grey'},
-            {base: 'nZ', text: 'Silver Dapple'}
+            {base: 'nG', text: 'Grey'} // Still needs png file
         ],
-        next: 'Others',
-        before: 'minormarking'
+        next: 'topMarkings',
+        before: 'minorMarking'
 
+    },
+    {
+        id: 'topMarkings',
+        title: 'Choose your Paint Markings and Other Genes',
+        type: 'checkbox',
+        nextbtn: undefined,
+        beforebtn: 'back',
+        menuitem: [
+            {base: 'nZ', text: 'Silver Dapple'},
+            {base: 'nTb', text: 'Tobiano'},
+            {base: 'nO', text: 'Overo'},
+            {base: 'nSpl', text: 'Splash'},
+            {base: 'nSb', text: 'Sabino'},
+            {base: 'nRb', text: 'Rabicano'},
+            {base: 'nRn', text: 'Roan'},
+            {base: 'nW', text: 'Dominant White'}
+        ],
+        next: '',
+        before: 'dilutesMods'
     }
     
 ]

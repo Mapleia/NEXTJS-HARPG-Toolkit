@@ -8,15 +8,14 @@ import Menu from '../../../components/phenoapp/menu';
 // Styling:
 import styles from '../../../styles/phenoapp.module.css';
 
-// Mutates array, so assign to new variable before using with states
-
 export default class Phenoapp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedbase: 'BLANK', // base colour
       minormarking: [],      // minor white markings
-      genes: [],             // All genes
+      genes: [],             // All dilutes and mods genes
+      topgenes: [],          // Genes that go over top
       currentmenu: "start",
       menu: {
         id: 'start',
@@ -75,7 +74,7 @@ export default class Phenoapp extends React.Component {
           selectedbase: baseValue,
         });
 
-    } else if (this.state.menu.id === 'minormarking') {
+    } else if (this.state.menu.id === 'minorMarking') {
       // If minormarking doesn't already have the marking:
       if (!this.state.minormarking.includes(baseValue)) {
         // isChecked: {
@@ -144,6 +143,24 @@ export default class Phenoapp extends React.Component {
           isChecked: chk
         });
       }
+    } else if (this.state.menu.id === 'topMarkings') {
+      // If topgenes doesn't already have the gene:
+      if (!this.state.topgenes.includes(baseValue)) {
+        chk[baseValue] = 'checked';
+        this.setState({
+          topgenes: this.state.topgenes.concat(baseValue),
+          isChecked: chk
+        })
+      } else {
+        chk[baseValue] = false;
+        arr = this.state.topgenes;
+        arr.remove(baseValue);
+
+        this.setState({
+          topgenes: arr,
+          isChecked: chk
+        });
+      }
     }
   }
 
@@ -164,6 +181,7 @@ export default class Phenoapp extends React.Component {
               className={styles.display}
               base={this.state.selectedbase}
               genes={this.state.genes}
+              topgenes={this.state.topgenes}
               minormarking={this.state.minormarking}/>
           </div>
           

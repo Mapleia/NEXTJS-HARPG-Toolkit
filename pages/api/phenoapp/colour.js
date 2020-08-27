@@ -156,6 +156,33 @@ const colours = [
         skin: '/extra/REG_SKIN.png',
         eye: '/extra/REG_EYE.png',
     },
+    {
+        base: ['chestnut'],
+        gene: ['nCr', 'nCh'],
+        img: '/colours/PALMCHMP.png',
+        hair: '/hair/PALMCHMPhair.png',
+        hoof: '/extra/REG_HOOVES.png',
+        skin: '/extra/REG_SKIN.png',
+        eye: '/extra/REG_EYE.png',
+    },
+    {
+        base: ['black'],
+        gene: ['nCr', 'nCh'],
+        img: '/colours/classiccreamchmp.png',
+        hair: '/hair/BLACKHAIR.png',
+        hoof: '/extra/REG_HOOVES.png',
+        skin: '/extra/REG_SKIN.png',
+        eye: '/extra/REG_EYE.png',
+    },
+    {
+        base: ['bay', 'sealbrown'],
+        gene: ['nCr', 'nCh'],
+        img: '/colours/buckskinchmp.png',
+        hair: '/hair/BLACKHAIR.png',
+        hoof: '/extra/REG_HOOVES.png',
+        skin: '/extra/REG_SKIN.png',
+        eye: '/extra/REG_EYE.png',
+    },
 ];
 
 function GiveItem(query) {
@@ -169,11 +196,6 @@ function GiveItem(query) {
         query.gene = query.gene.split(',')
     }
 
-    var hasSilver = query.gene.includes('nZ');
-    if (hasSilver) {
-        query.gene.remove('nZ');
-    }
-
 	colours.find((c) => {  
         if ( query.gene.equals(c.gene, false) && c.base.includes(query.base)) {
             console.log(c)
@@ -181,7 +203,6 @@ function GiveItem(query) {
         }
   })
   
-	if (hasSilver) {found.hair = '/hair/SILVERHAIR.png'}
   return found;
 }
 
